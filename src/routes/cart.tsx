@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { checkoutLink, removeFromCart, useCart, addToCart } from "@/lib/cart";
-import { formatNaira, products } from "@/lib/products";
+import { checkoutLink, removeFromCart, updateQty, useCart } from "@/lib/cart";
+import { formatNaira } from "@/lib/products";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({ meta: [{ title: "Your Cart — TOBIRACHI Gadgets" }] }),
@@ -37,15 +37,9 @@ function CartPage() {
                   <div className="text-xs text-muted-foreground">{i.product.spec}</div>
                   <div className="mt-2 flex items-center justify-between">
                     <div className="inline-flex items-center rounded-md border border-border/60">
-                      <button
-                        onClick={() => i.qty > 1 ? addToCart({ ...i.product } as never, -1) : removeFromCart(i.id)}
-                        className="grid h-8 w-8 place-items-center hover:bg-muted"
-                      ><Minus className="h-3 w-3" /></button>
+                      <button onClick={() => updateQty(i.id, i.qty - 1)} className="grid h-8 w-8 place-items-center hover:bg-muted"><Minus className="h-3 w-3" /></button>
                       <span className="w-8 text-center text-sm">{i.qty}</span>
-                      <button
-                        onClick={() => { const p = products.find(x => x.id === i.id); if (p) addToCart(p); }}
-                        className="grid h-8 w-8 place-items-center hover:bg-muted"
-                      ><Plus className="h-3 w-3" /></button>
+                      <button onClick={() => updateQty(i.id, i.qty + 1)} className="grid h-8 w-8 place-items-center hover:bg-muted"><Plus className="h-3 w-3" /></button>
                     </div>
                     <div className="font-semibold text-gradient">{formatNaira(i.product.price * i.qty)}</div>
                   </div>

@@ -30,6 +30,13 @@ export function removeFromCart(id: string) {
   write(read().filter((i) => i.id !== id));
 }
 
+export function updateQty(id: string, qty: number) {
+  if (qty <= 0) return removeFromCart(id);
+  const items = read();
+  const it = items.find((i) => i.id === id);
+  if (it) { it.qty = qty; write(items); }
+}
+
 export function clearCart() { write([]); }
 
 export function useCart() {
