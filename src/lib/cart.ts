@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { waLink } from "./whatsapp";
-import { formatNaira, products, type Product } from "./products";
+import { formatNaira, useProducts, type Product } from "./products";
 
 const KEY = "tobirachi-cart";
 const EVT = "tobirachi-cart-change";
@@ -17,7 +17,7 @@ function write(items: CartItem[]) {
   window.dispatchEvent(new Event(EVT));
 }
 
-export function addToCart(p: Product, qty = 1) {
+export function addToCart(p: Pick<Product, "id" | "name" | "price">, qty = 1) {
   const items = read();
   const existing = items.find((i) => i.id === p.id);
   if (existing) existing.qty += qty;
@@ -41,6 +41,7 @@ export function clearCart() { write([]); }
 
 export function useCart() {
   const [items, setItems] = useState<CartItem[]>([]);
+  const { data: products = [] } = useProducts();
   useEffect(() => {
     setItems(read());
     const h = () => setItems(read());

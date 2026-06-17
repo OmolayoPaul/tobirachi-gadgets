@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ProductFilter } from "@/components/site/ProductFilter";
-import { products } from "@/lib/products";
+import { useProductsByCategory } from "@/lib/products";
 
 export const Route = createFileRoute("/smart-devices")({
   head: () => ({
@@ -14,12 +14,12 @@ export const Route = createFileRoute("/smart-devices")({
 });
 
 function SmartPage() {
-  const items = products.filter((p) => p.category === "smart-devices");
+  const { data: items, isLoading } = useProductsByCategory("smart-devices");
   return (
     <>
       <PageHeader eyebrow="Shop" title="Smart Devices" description="Smart home, cameras, gaming, and wearables — upgrade your lifestyle." />
       <section className="mx-auto max-w-7xl px-4 py-10">
-        <ProductFilter items={items} brandKey="subcategory" />
+        {isLoading ? <p className="text-muted-foreground">Loading…</p> : <ProductFilter items={items} brandKey="subcategory" />}
       </section>
     </>
   );
