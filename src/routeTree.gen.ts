@@ -9,16 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrainingRouteImport } from './routes/training'
 import { Route as SmartDevicesRouteImport } from './routes/smart-devices'
+import { Route as RepairsRouteImport } from './routes/repairs'
 import { Route as PhonesRouteImport } from './routes/phones'
 import { Route as LaptopsRouteImport } from './routes/laptops'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AccessoriesRouteImport } from './routes/accessories'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TrainingRoute = TrainingRouteImport.update({
+  id: '/training',
+  path: '/training',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SmartDevicesRoute = SmartDevicesRouteImport.update({
   id: '/smart-devices',
   path: '/smart-devices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RepairsRoute = RepairsRouteImport.update({
+  id: '/repairs',
+  path: '/repairs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PhonesRoute = PhonesRouteImport.update({
@@ -41,6 +54,11 @@ const AccessoriesRoute = AccessoriesRouteImport.update({
   path: '/accessories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,66 +67,107 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
   '/cart': typeof CartRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
+  '/repairs': typeof RepairsRoute
   '/smart-devices': typeof SmartDevicesRoute
+  '/training': typeof TrainingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
   '/cart': typeof CartRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
+  '/repairs': typeof RepairsRoute
   '/smart-devices': typeof SmartDevicesRoute
+  '/training': typeof TrainingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
   '/cart': typeof CartRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
+  '/repairs': typeof RepairsRoute
   '/smart-devices': typeof SmartDevicesRoute
+  '/training': typeof TrainingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/accessories'
     | '/cart'
     | '/laptops'
     | '/phones'
+    | '/repairs'
     | '/smart-devices'
+    | '/training'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accessories' | '/cart' | '/laptops' | '/phones' | '/smart-devices'
+  to:
+    | '/'
+    | '/about'
+    | '/accessories'
+    | '/cart'
+    | '/laptops'
+    | '/phones'
+    | '/repairs'
+    | '/smart-devices'
+    | '/training'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/accessories'
     | '/cart'
     | '/laptops'
     | '/phones'
+    | '/repairs'
     | '/smart-devices'
+    | '/training'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AccessoriesRoute: typeof AccessoriesRoute
   CartRoute: typeof CartRoute
   LaptopsRoute: typeof LaptopsRoute
   PhonesRoute: typeof PhonesRoute
+  RepairsRoute: typeof RepairsRoute
   SmartDevicesRoute: typeof SmartDevicesRoute
+  TrainingRoute: typeof TrainingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/training': {
+      id: '/training'
+      path: '/training'
+      fullPath: '/training'
+      preLoaderRoute: typeof TrainingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/smart-devices': {
       id: '/smart-devices'
       path: '/smart-devices'
       fullPath: '/smart-devices'
       preLoaderRoute: typeof SmartDevicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repairs': {
+      id: '/repairs'
+      path: '/repairs'
+      fullPath: '/repairs'
+      preLoaderRoute: typeof RepairsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/phones': {
@@ -139,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccessoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -151,11 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AccessoriesRoute: AccessoriesRoute,
   CartRoute: CartRoute,
   LaptopsRoute: LaptopsRoute,
   PhonesRoute: PhonesRoute,
+  RepairsRoute: RepairsRoute,
   SmartDevicesRoute: SmartDevicesRoute,
+  TrainingRoute: TrainingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
