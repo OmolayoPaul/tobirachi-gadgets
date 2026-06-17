@@ -15,8 +15,6 @@ import { Route as RepairsRouteImport } from './routes/repairs'
 import { Route as PhonesRouteImport } from './routes/phones'
 import { Route as LaptopsRouteImport } from './routes/laptops'
 import { Route as CartRouteImport } from './routes/cart'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AccessoriesRouteImport } from './routes/accessories'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -51,16 +49,6 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AccessoriesRoute = AccessoriesRouteImport.update({
   id: '/accessories',
   path: '/accessories',
@@ -81,8 +69,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
-  '/admin': typeof AdminRoute
-  '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
@@ -94,8 +80,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
-  '/admin': typeof AdminRoute
-  '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
@@ -108,8 +92,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
-  '/admin': typeof AdminRoute
-  '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
@@ -123,8 +105,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/accessories'
-    | '/admin'
-    | '/auth'
     | '/cart'
     | '/laptops'
     | '/phones'
@@ -136,8 +116,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/accessories'
-    | '/admin'
-    | '/auth'
     | '/cart'
     | '/laptops'
     | '/phones'
@@ -149,8 +127,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/accessories'
-    | '/admin'
-    | '/auth'
     | '/cart'
     | '/laptops'
     | '/phones'
@@ -163,8 +139,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AccessoriesRoute: typeof AccessoriesRoute
-  AdminRoute: typeof AdminRoute
-  AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   LaptopsRoute: typeof LaptopsRoute
   PhonesRoute: typeof PhonesRoute
@@ -217,20 +191,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/accessories': {
       id: '/accessories'
       path: '/accessories'
@@ -259,8 +219,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AccessoriesRoute: AccessoriesRoute,
-  AdminRoute: AdminRoute,
-  AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   LaptopsRoute: LaptopsRoute,
   PhonesRoute: PhonesRoute,

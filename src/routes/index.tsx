@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Cpu, Headphones, Laptop, ShieldCheck, Smartphone, Truck, Wrench, GraduationCap, Sparkles } from "lucide-react";
 import { ProductCard } from "@/components/site/ProductCard";
-import { useProducts } from "@/lib/products";
+import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,7 +38,6 @@ const TESTIMONIALS = [
 ];
 
 function Index() {
-  const { data: products = [] } = useProducts();
   const hot = products.filter((p) => p.badge === "HOT" || p.badge === "BEST SELLER").slice(0, 5);
 
   return (
