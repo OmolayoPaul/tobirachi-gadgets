@@ -15,6 +15,7 @@ import { Route as SmartDevicesRouteImport } from './routes/smart-devices'
 import { Route as RepairsRouteImport } from './routes/repairs'
 import { Route as PhonesRouteImport } from './routes/phones'
 import { Route as LaptopsRouteImport } from './routes/laptops'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AccessoriesRouteImport } from './routes/accessories'
 import { Route as AboutRouteImport } from './routes/about'
@@ -50,6 +51,11 @@ const LaptopsRoute = LaptopsRouteImport.update({
   path: '/laptops',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
   '/repairs': typeof RepairsRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
   '/repairs': typeof RepairsRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/accessories': typeof AccessoriesRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/laptops': typeof LaptopsRoute
   '/phones': typeof PhonesRoute
   '/repairs': typeof RepairsRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessories'
     | '/cart'
+    | '/checkout'
     | '/laptops'
     | '/phones'
     | '/repairs'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessories'
     | '/cart'
+    | '/checkout'
     | '/laptops'
     | '/phones'
     | '/repairs'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessories'
     | '/cart'
+    | '/checkout'
     | '/laptops'
     | '/phones'
     | '/repairs'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccessoriesRoute: typeof AccessoriesRoute
   CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   LaptopsRoute: typeof LaptopsRoute
   PhonesRoute: typeof PhonesRoute
   RepairsRoute: typeof RepairsRoute
@@ -204,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LaptopsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart': {
       id: '/cart'
       path: '/cart'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccessoriesRoute: AccessoriesRoute,
   CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   LaptopsRoute: LaptopsRoute,
   PhonesRoute: PhonesRoute,
   RepairsRoute: RepairsRoute,

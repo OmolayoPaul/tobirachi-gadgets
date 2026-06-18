@@ -77,11 +77,20 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-border/60 bg-background/95 lg:hidden">
+        <nav className="absolute inset-x-0 top-full z-50 border-t border-border/60 bg-background shadow-xl lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col p-2">
             {NAV.map((item) => (
-              <Link key={item.to} to={item.to} className="rounded-md px-3 py-3 text-sm hover:bg-muted">
-                {item.label}
+              <Link
+                key={item.to}
+                to={item.to}
+                className="flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium hover:bg-muted"
+              >
+                <span>{item.label}</span>
+                {"badge" in item && item.badge && (
+                  <span className="rounded-full bg-destructive px-1.5 py-0.5 text-[9px] font-bold text-destructive-foreground">
+                    {item.badge}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
