@@ -60,14 +60,20 @@ function CartPage() {
             <div className="mt-4 flex justify-between border-t border-border/60 pt-4 text-base font-semibold">
               <span>Total</span><span className="text-gradient">{formatNaira(total)}</span>
             </div>
+            <Link
+              to="/checkout"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-md bg-gradient-brand px-4 py-3 text-sm font-semibold text-primary-foreground"
+            >
+              Pay with card (Demo)
+            </Link>
             <a
               href={checkoutLink(items, total)}
               target="_blank" rel="noreferrer"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-md bg-gradient-brand px-4 py-3 text-sm font-semibold text-primary-foreground"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-md border border-primary/40 bg-primary/5 px-4 py-3 text-sm font-semibold text-primary"
             >
               Checkout via WhatsApp
             </a>
-            <p className="mt-3 text-center text-xs text-muted-foreground">We finalize your order on WhatsApp.</p>
+            <p className="mt-3 text-center text-xs text-muted-foreground">Card checkout is a sandbox demo — Paystack / ExpressPay coming soon.</p>
           </aside>
         </div>
       )}
