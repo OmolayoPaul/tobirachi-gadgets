@@ -16,7 +16,7 @@ function TrustPage() {
     <div className="mx-auto max-w-3xl px-4 py-10">
       <PageHeader
         title="Trust, Security & Privacy"
-        subtitle="This page is maintained by Tobi Ajuyah to answer common security and privacy questions about TOBIRACHI Gadgets and Stores."
+        description="This page is maintained by Tobi Ajuyah to answer common security and privacy questions about TOBIRACHI Gadgets and Stores."
       />
 
       <div className="prose prose-invert mt-8 max-w-none space-y-8 text-sm text-muted-foreground">
