@@ -1,6 +1,7 @@
+import { Link } from "@tanstack/react-router";
 import { addToCart } from "@/lib/cart";
 import { formatNaira, type Product } from "@/lib/products";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Zap } from "lucide-react";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
@@ -31,12 +32,20 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="font-display text-lg font-bold text-gradient">{formatNaira(product.price)}</div>
           <button
             onClick={() => addToCart(product)}
-            className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:opacity-90"
+            className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-2 text-xs font-semibold transition hover:bg-muted"
           >
             <ShoppingCart className="h-3.5 w-3.5" /> Add
           </button>
         </div>
+        <Link
+          to="/checkout"
+          search={{ productId: product.id }}
+          className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-md bg-gradient-brand px-3 py-2 text-xs font-semibold text-primary-foreground transition hover:opacity-90"
+        >
+          <Zap className="h-3.5 w-3.5" /> Buy Now
+        </Link>
       </div>
     </div>
   );
 }
+
