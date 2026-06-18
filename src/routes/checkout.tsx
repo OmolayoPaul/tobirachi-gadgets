@@ -1,29 +1,44 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { CheckCircle2, CreditCard, Lock, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { z } from "zod";
 import { toast } from "sonner";
 import { clearCart, useCart } from "@/lib/cart";
-import { formatNaira } from "@/lib/products";
+import { formatNaira, products, type Product } from "@/lib/products";
+
+const searchSchema = z.object({
+  productId: z.string().optional(),
+});
 
 export const Route = createFileRoute("/checkout")({
+  validateSearch: searchSchema,
   head: () => ({ meta: [{ title: "Checkout — TOBIRACHI Gadgets" }] }),
   component: CheckoutPage,
 });
 
+type LineItem = { id: string; qty: number; product: Product };
+
 function CheckoutPage() {
-  const { items, total, count } = useCart();
+  const { productId } = Route.useSearch();
+  const cart = useCart();
   const navigate = useNavigate();
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const buyNowProduct = useMemo(
+    () => (productId ? products.find((p) => p.id === productId) : undefined),
+    [productId],
+  );
+
+  const items: LineItem[] = buyNowProduct
+    ? [{ id: buyNowProduct.id, qty: 1, product: buyNowProduct }]
+    : cart.items;
+  const total = items.reduce((s, i) => s + i.product.price * i.qty, 0);
+  const count = items.reduce((s, i) => s + i.qty, 0);
+
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    card: "",
-    expiry: "",
-    cvv: "",
+    name: "", email: "", phone: "", address: "",
+    card: "", expiry: "", cvv: "",
   });
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -34,7 +49,7 @@ function CheckoutPage() {
     setTimeout(() => {
       setProcessing(false);
       setSuccess(true);
-      clearCart();
+      if (!buyNowProduct) clearCart();
       toast.success("Payment successful (demo)", { description: "This is a sandbox checkout." });
     }, 1600);
   }
@@ -60,7 +75,7 @@ function CheckoutPage() {
   if (count === 0) {
     return (
       <section className="mx-auto max-w-xl px-4 py-20 text-center">
-        <h1 className="font-display text-2xl font-bold">Your cart is empty</h1>
+        <h1 className="font-display text-2xl font-bold">Nothing to check out</h1>
         <Link to="/phones" className="mt-6 inline-flex rounded-md bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground">
           Browse products
         </Link>
@@ -74,6 +89,12 @@ function CheckoutPage() {
       <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
         <ShieldCheck className="h-3 w-3" /> Demo gateway — Paystack / ExpressPay coming soon
       </div>
+      {buyNowProduct && (
+        <p className="mt-3 text-xs text-muted-foreground">
+          Buying now: <span className="font-semibold text-foreground">{buyNowProduct.name}</span> ·{" "}
+          <Link to="/checkout" className="text-primary underline">use full cart instead</Link>
+        </p>
+      )}
 
       <form onSubmit={onSubmit} className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
         <div className="space-y-6">
