@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TrustRouteImport } from './routes/trust'
 import { Route as TrainingRouteImport } from './routes/training'
 import { Route as SmartDevicesRouteImport } from './routes/smart-devices'
 import { Route as RepairsRouteImport } from './routes/repairs'
@@ -19,6 +20,11 @@ import { Route as AccessoriesRouteImport } from './routes/accessories'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TrustRoute = TrustRouteImport.update({
+  id: '/trust',
+  path: '/trust',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrainingRoute = TrainingRouteImport.update({
   id: '/training',
   path: '/training',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/repairs': typeof RepairsRoute
   '/smart-devices': typeof SmartDevicesRoute
   '/training': typeof TrainingRoute
+  '/trust': typeof TrustRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/repairs': typeof RepairsRoute
   '/smart-devices': typeof SmartDevicesRoute
   '/training': typeof TrainingRoute
+  '/trust': typeof TrustRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/repairs': typeof RepairsRoute
   '/smart-devices': typeof SmartDevicesRoute
   '/training': typeof TrainingRoute
+  '/trust': typeof TrustRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/repairs'
     | '/smart-devices'
     | '/training'
+    | '/trust'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/repairs'
     | '/smart-devices'
     | '/training'
+    | '/trust'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/repairs'
     | '/smart-devices'
     | '/training'
+    | '/trust'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,10 +157,18 @@ export interface RootRouteChildren {
   RepairsRoute: typeof RepairsRoute
   SmartDevicesRoute: typeof SmartDevicesRoute
   TrainingRoute: typeof TrainingRoute
+  TrustRoute: typeof TrustRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/trust': {
+      id: '/trust'
+      path: '/trust'
+      fullPath: '/trust'
+      preLoaderRoute: typeof TrustRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/training': {
       id: '/training'
       path: '/training'
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   RepairsRoute: RepairsRoute,
   SmartDevicesRoute: SmartDevicesRoute,
   TrainingRoute: TrainingRoute,
+  TrustRoute: TrustRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
