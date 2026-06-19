@@ -93,9 +93,9 @@ function AboutPage() {
             <span className="grid h-12 w-12 place-items-center rounded-lg bg-primary/10 text-primary"><Phone className="h-5 w-5" /></span>
             <div><div className="text-xs text-muted-foreground">Call us</div><div className="font-semibold">{WHATSAPP_DISPLAY}</div></div>
           </a>
-          <a href="mailto:tobirachigadgets@gmail.com" className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-5 transition hover:border-primary/60">
+          <a href="mailto:ajuyahdaniel@gmail.com" className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-5 transition hover:border-primary/60">
             <span className="grid h-12 w-12 place-items-center rounded-lg bg-primary/10 text-primary"><Mail className="h-5 w-5" /></span>
-            <div><div className="text-xs text-muted-foreground">Email</div><div className="font-semibold">tobirachigadgets@gmail.com</div></div>
+            <div><div className="text-xs text-muted-foreground">Email</div><div className="font-semibold">ajuyahdaniel@gmail.com</div></div>
           </a>
           <a href={waLink("Hi TOBIRACHI! I have a question.")} target="_blank" rel="noreferrer" className="flex items-center gap-4 rounded-xl border border-[#25D366]/40 bg-[#25D366]/10 p-5 transition hover:border-[#25D366]">
             <span className="grid h-12 w-12 place-items-center rounded-lg bg-[#25D366]/20 text-[#25D366]"><MessageCircle className="h-5 w-5" /></span>
