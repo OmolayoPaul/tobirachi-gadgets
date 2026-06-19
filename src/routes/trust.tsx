@@ -47,7 +47,7 @@ function TrustPage() {
 
         <section>
           <h2 className="text-base font-semibold text-foreground">Security contact</h2>
-          <p>Report a security concern to Tobi Ajuyah on WhatsApp at <a href="https://wa.me/2349093929840" className="text-primary underline">+234 909 392 9840</a> or by email at <a href="mailto:ajuyahdaniel@gmail.com" className="text-primary underline">ajuyahdaniel@gmail.com</a>.</p>
+          <p>Report a security concern to Tobi Ajuyah by phone at <a href="tel:+2347073791611" className="text-primary underline">0707 379 1611</a> or by email at <a href="mailto:ajuyahdaniel@gmail.com" className="text-primary underline">ajuyahdaniel@gmail.com</a>.</p>
         </section>
       </div>
     </div>
