@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronDown, Mail, MapPin, MessageCircle, Phone, User, Wrench } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
-import { PHONE_TEL, WHATSAPP_DISPLAY, waLink } from "@/lib/whatsapp";
+import { PHONE_TEL, PHONE_TEL_ALT, PHONE_DISPLAY_ALT, WHATSAPP_DISPLAY, waLink } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
