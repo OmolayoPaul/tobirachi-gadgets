@@ -11,6 +11,13 @@ export function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           loading="lazy"
+          decoding="async"
+          onError={(e) => {
+            const img = e.currentTarget;
+            if (img.dataset.fallback) return;
+            img.dataset.fallback = "1";
+            img.src = `https://placehold.co/600x600/0a0e1a/06b6d4?text=${encodeURIComponent(product.name)}`;
+          }}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <div className="absolute left-2 top-2 flex gap-1.5">
