@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronDown, Mail, MapPin, MessageCircle, Phone, User, Wrench } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
-import { PHONE_TEL, WHATSAPP_DISPLAY, waLink } from "@/lib/whatsapp";
+import { PHONE_TEL, PHONE_TEL_ALT, PHONE_DISPLAY_ALT, WHATSAPP_DISPLAY, waLink } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -88,10 +88,14 @@ function AboutPage() {
       {/* Contact */}
       <section className="mx-auto max-w-7xl px-4 py-12">
         <h2 className="font-display text-2xl font-bold">Get In Touch</h2>
-        <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid gap-6 lg:grid-cols-4">
           <a href={`tel:${PHONE_TEL}`} className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-5 transition hover:border-primary/60">
             <span className="grid h-12 w-12 place-items-center rounded-lg bg-primary/10 text-primary"><Phone className="h-5 w-5" /></span>
             <div><div className="text-xs text-muted-foreground">Call us</div><div className="font-semibold">{WHATSAPP_DISPLAY}</div></div>
+          </a>
+          <a href={`tel:${PHONE_TEL_ALT}`} className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-5 transition hover:border-primary/60">
+            <span className="grid h-12 w-12 place-items-center rounded-lg bg-primary/10 text-primary"><Phone className="h-5 w-5" /></span>
+            <div><div className="text-xs text-muted-foreground">Alt line</div><div className="font-semibold">{PHONE_DISPLAY_ALT}</div></div>
           </a>
           <a href="mailto:ajuyahdaniel@gmail.com" className="flex items-center gap-4 rounded-xl border border-border/60 bg-card p-5 transition hover:border-primary/60">
             <span className="grid h-12 w-12 place-items-center rounded-lg bg-primary/10 text-primary"><Mail className="h-5 w-5" /></span>

@@ -28,6 +28,7 @@ export type Database = {
           price: number
           sort_order: number
           spec: string
+          stock: number
           subcategory: string | null
           updated_at: string
         }
@@ -44,6 +45,7 @@ export type Database = {
           price?: number
           sort_order?: number
           spec?: string
+          stock?: number
           subcategory?: string | null
           updated_at?: string
         }
@@ -60,6 +62,7 @@ export type Database = {
           price?: number
           sort_order?: number
           spec?: string
+          stock?: number
           subcategory?: string | null
           updated_at?: string
         }
@@ -91,7 +94,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_admin_if_first: { Args: never; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user"

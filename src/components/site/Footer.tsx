@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Zap } from "lucide-react";
-import { PHONE_TEL, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
+import { PHONE_TEL, PHONE_TEL_ALT, PHONE_DISPLAY_ALT, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
@@ -40,6 +40,7 @@ export function Footer() {
           <h4 className="mb-3 text-sm font-semibold">Contact</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /><a href={`tel:${PHONE_TEL}`}>{WHATSAPP_DISPLAY}</a></li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /><a href={`tel:${PHONE_TEL_ALT}`}>{PHONE_DISPLAY_ALT}</a></li>
             <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /><a href="mailto:ajuyahdaniel@gmail.com">ajuyahdaniel@gmail.com</a></li>
             <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" />Magboro, Ogun State</li>
           </ul>

@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, Phone, ShoppingCart, X, Zap } from "lucide-react";
+import { Menu, Phone, Settings, ShoppingCart, X, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { PHONE_TEL, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
@@ -61,6 +61,9 @@ export function Header() {
                 {count}
               </span>
             )}
+          </Link>
+          <Link to="/admin" title="Admin" className="hidden h-10 w-10 place-items-center rounded-md hover:bg-muted md:grid">
+            <Settings className="h-5 w-5" />
           </Link>
           <a href={`tel:${PHONE_TEL}`} className="hidden items-center gap-2 rounded-md border border-border/60 px-3 py-2 text-sm hover:bg-muted md:flex">
             <Phone className="h-4 w-4 text-primary" />

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { ProductFilter } from "@/components/site/ProductFilter";
-import { products } from "@/lib/products";
+import { useProductsCatalog } from "@/lib/useProductsCatalog";
 
 export const Route = createFileRoute("/phones")({
   head: () => ({
@@ -14,6 +14,7 @@ export const Route = createFileRoute("/phones")({
 });
 
 function PhonesPage() {
+  const { products } = useProductsCatalog();
   const items = products.filter((p) => p.category === "phones");
   return (
     <>
