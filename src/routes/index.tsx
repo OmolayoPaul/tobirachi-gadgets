@@ -38,6 +38,7 @@ const TESTIMONIALS = [
 ];
 
 function Index() {
+  const { products } = useProductsCatalog();
   const hot = products.filter((p) => p.badge === "HOT" || p.badge === "BEST SELLER").slice(0, 5);
 
   return (
