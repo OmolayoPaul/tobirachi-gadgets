@@ -62,6 +62,9 @@ export function Header() {
               </span>
             )}
           </Link>
+          <Link to="/admin" title="Admin" className="hidden h-10 w-10 place-items-center rounded-md hover:bg-muted md:grid">
+            <Settings className="h-5 w-5" />
+          </Link>
           <a href={`tel:${PHONE_TEL}`} className="hidden items-center gap-2 rounded-md border border-border/60 px-3 py-2 text-sm hover:bg-muted md:flex">
             <Phone className="h-4 w-4 text-primary" />
             <span>{WHATSAPP_DISPLAY}</span>
