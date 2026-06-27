@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Zap } from "lucide-react";
-import { PHONE_TEL, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
+import { PHONE_TEL, PHONE_TEL_ALT, PHONE_DISPLAY_ALT, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
