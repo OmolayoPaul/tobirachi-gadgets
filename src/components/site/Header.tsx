@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, Phone, ShoppingCart, X, Zap } from "lucide-react";
+import { Menu, Phone, Settings, ShoppingCart, X, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { PHONE_TEL, WHATSAPP_DISPLAY } from "@/lib/whatsapp";
