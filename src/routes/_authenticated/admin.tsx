@@ -48,15 +48,7 @@ function AdminPage() {
       .from("user_roles")
       .select("role")
       .eq("user_id", userRes.user.id);
-    let admin = (roles ?? []).some((r) => r.role === "admin");
-    if (!admin) {
-      // Try bootstrap
-      const { data: claimed } = await supabase.rpc("claim_admin_if_first");
-      if (claimed === true) {
-        admin = true;
-        toast.success("You're now the admin.");
-      }
-    }
+    const admin = (roles ?? []).some((r) => r.role === "admin");
     setIsAdmin(admin);
   }
 
